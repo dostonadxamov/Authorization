@@ -1,7 +1,8 @@
 import { Form, NavLink, useActionData } from "react-router-dom";
 import { useRegister } from "../hook/useRegister";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { formError } from "../components/ErrorId";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 export async function action({ request }) {
     const formData = await request.formData()
@@ -12,18 +13,18 @@ export async function action({ request }) {
 
 
 export default function Register() {
- 
+
 
     const data = useActionData()
-    const { register } = useRegister()
+    const { register,  isPending } = useRegister()
 
 
     useEffect(() => {
         if (data?.name && data?.email && data?.password) {
-        register(data.name, data.email,  data.password);
-        
-        }else{
-           data ? formError(data) : false
+            register(data.name, data.email, data.password);
+
+        } else {
+            data ? formError(data) : false
         }
     }, [data])
 
@@ -40,9 +41,13 @@ export default function Register() {
                     <input type="text" placeholder="Enter Your name" name="name" />
                     <input type="email" placeholder="Enter Your Email" name="email" />
                     <input type="password" placeholder="Enter Your Password" name="password" />
-                    <button className="oauthButton">
+                    {!isPending && <button className="oauthButton">
                         Continue
-                    </button>
+                        <FaAngleDoubleRight size={18} />
+                    </button>}
+                    {isPending && <button disabled className="oauthButton">
+                        Loading...
+                    </button>}
                 </Form>
             </div>
         </>

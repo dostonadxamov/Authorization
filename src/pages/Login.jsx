@@ -16,11 +16,11 @@ export async function action({ request }) {
 
 export default function Login() {
   const data = useActionData()
-  const { login } = useLogin()
+  const { login, isPending } = useLogin()
 
 
   useEffect(() => {
-    if (data?.email, data?.password) {
+    if (data?.email && data?.password) {
       login(data.email, data.password);
     } else {
       data ? formError() : false
@@ -33,7 +33,7 @@ export default function Login() {
       <Form method="post" className="form">
         <p>
           Welcome,<span>Login in to continue</span>
-          <NavLink  to={"/register"}>Register</NavLink>
+          <NavLink to={"/register"}>Register</NavLink>
         </p>
 
         <input type="email" placeholder="Email" name="email" />
@@ -51,10 +51,13 @@ export default function Login() {
           <FaGithub size={24} />
           Continue with Github
         </button>
-        <button className="oauthButton">
+        {!isPending && <button className="oauthButton">
           Continue
-        <FaAngleDoubleRight size={18} />
-        </button>
+          <FaAngleDoubleRight size={18} />
+        </button>}
+        {isPending && <button className="oauthButton">
+          Loading...
+        </button>}
       </Form>
     </div>
   )

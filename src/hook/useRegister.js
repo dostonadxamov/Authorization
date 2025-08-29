@@ -1,13 +1,16 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../firebase/config";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { login } from "../app/Auth/AuthSlice";
 
 
 export const useRegister = () => {
+    const dispatch = useDispatch()
     const [isPending, setIspending] = useState()
     const [error, setError] = useState()
-    const  register = async (name, password, email) => {
+    const register = async (name, email, password) => {
         // console.log(`Name: ${name}, Email: ${email}, Password: ${password}`);
         try {
             setIspending(true)
@@ -16,15 +19,22 @@ export const useRegister = () => {
             if (!req.user) {
                 toast.error("Regestration failed")
             }
+            await updateProfile(req.user, {
+                displayName: name,
+            })
+
+            dispatch(login(req.user))
+            console.log(req.user);
+            
         } catch (error) {
             setError(error.message)
             console.log(error.message);
-            l
-            
+            toast.error(error.message)
+
         } finally {
             setIspending(false)
         }
 
     }
-    return { register }
+    return { register, isPending, error }
 }

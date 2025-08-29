@@ -4,24 +4,8 @@
     box-sizing: border-box;
 }
 
-.img {
-    filter: brightness(40%);
-    width: 1872px;
-    height: 947px;
-}
 
 
-
-
-
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100vh;
-    background-color: #e8e8e8;
-    position: relative;
-}
 
 .form {
     --background: #d3d3d3;
