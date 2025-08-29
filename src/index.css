@@ -5,6 +5,11 @@
 }
 
 
+body{
+    background-image: url(./assets/gora_reka_derevia_160481_2560x1440.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 
 .form {
