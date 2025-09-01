@@ -28,9 +28,9 @@ export default function Login() {
     } else {
       data ? formError() : false
     }
-
+    
     if (data?.emailRecovery) {
-      resetPassword(user.emailRecovery)
+      resetPassword(data.emailRecovery)
     }
 
   }, [data])

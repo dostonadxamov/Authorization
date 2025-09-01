@@ -2,10 +2,11 @@
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { auth } from "../firebase/config";
-import { login as loginAction } from "../app/Auth/AuthSlice"; 
+import { auth, db } from "../firebase/config";
+import { login as loginAction } from "../app/Auth/AuthSlice";
+import { doc, updateDoc } from "firebase/firestore";
 
 export default function useLogin() {
   const dispatch = useDispatch();
@@ -16,8 +17,12 @@ export default function useLogin() {
   const login = async (email, password) => {
     console.log(`Email: ${email}  Password: ${password}`);
     try {
-      setIspending(true);
       const req = await signInWithEmailAndPassword(auth, email, password);
+      const useRef = doc(db, "users", req.user.uid)
+      await updateDoc(useRef, {
+        online: true
+      })
+      setIspending(true);
 
       if (!req.user) {
         toast.error("Login failed");

@@ -4,7 +4,8 @@ import { auth } from "../firebase/config";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { login } from "../app/Auth/AuthSlice";
-
+import { db } from "../firebase/config";
+import { doc, setDoc } from "firebase/firestore";
 
 export const useRegister = () => {
     const dispatch = useDispatch()
@@ -22,6 +23,13 @@ export const useRegister = () => {
             await updateProfile(req.user, {
                 displayName: name,
             })
+
+            await setDoc(doc(db, "users", req.user.uid )), {
+                displayName: req.user.displayName,
+                photoUrl:  req.user.photoURL,
+                online: true, 
+                uid: req.user.uid
+            }
 
             dispatch(login(req.user))
             console.log(req.user);

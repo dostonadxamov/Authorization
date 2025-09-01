@@ -30,8 +30,8 @@ export default function Home() {
               </div>
               <div className="content">
                 <div>
-                  <h3>User name</h3>
-                  <p>Email</p>
+                  <h3>{user.displayName}</h3>
+                  <p>{user.email}</p>
                 </div>
 
                 <h4>online</h4>
