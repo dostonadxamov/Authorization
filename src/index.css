@@ -274,22 +274,24 @@ p {
 }
 
 .card {
-  display: flex;
-  gap: 20px;
-  border-radius: 8px;
-  align-items: center;
-  margin-right: auto;
-  margin-left: auto;
-  border-top: 2px solid white;
-  border-bottom: 2px solid white;
-  padding: 10px;
-  background-color: #212121;
-  width: 100%; /* 🔥 shu qo‘shiladi */
-  box-sizing: border-box; /* padding va border width ichida hisoblanadi */
+    display: flex;
+    gap: 20px;
+    border-radius: 8px;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    padding: 10px;
+    background-color: #212121;
+    width: 100%;
+    /* 🔥 shu qo‘shiladi */
+    box-sizing: border-box;
+    /* padding va border width ichida hisoblanadi */
 }
 
 
-h4{
+h4 {
     color: green;
     margin-left: 600px;
     margin-top: 15px;

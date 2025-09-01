@@ -4,13 +4,18 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { action as actionReducer } from "./pages/Register";
 import { action as actionReducer2 } from "./pages//Login";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { isAuthReady, login } from "./app/Auth/AuthSlice";
+import { auth } from "./firebase/config";
 
 
 export default function App() {
-  const { user } = useSelector((store) => store.user)
+  const dispatch = useDispatch()
+  const { user, authReady } = useSelector((store) => store.user)
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -36,7 +41,13 @@ export default function App() {
       action: actionReducer
     }
   ])
-  return <>
-    <RouterProvider router={routes} />
-  </>
+
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user)=>{
+      dispatch(login(user))
+      dispatch(isAuthReady())
+    })
+  },[])
+
+  return <> { authReady &&  <RouterProvider router={routes} />} </>
 }
