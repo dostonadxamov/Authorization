@@ -5,8 +5,13 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+html{
+    height: 100%;
+}
 
 body {
+    width: 100%;
+    height: 100%;
     background-image: url(./assets/gora_reka_derevia_160481_2560x1440.jpg);
     background-size: cover;
     background-repeat: no-repeat;
