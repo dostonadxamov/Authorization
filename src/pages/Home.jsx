@@ -1,9 +1,13 @@
-import {  useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useLogOut } from "../hook/LogOut"
+import { useCollection } from "../hook/useCollection"
 
 export default function Home() {
-  const {ispending,  logout}= useLogOut()
-  const {user} = useSelector((store)=> store.user)
+  const { ispending, logout } = useLogOut()
+  const { user } = useSelector((store) => store.user)
+  const { data } = useCollection("users")
+  console.log(data);
+
   return (
     <>
       <div className="container">
@@ -19,24 +23,32 @@ export default function Home() {
               </li>
             </ul>
           </nav>
-          <div className="wrapper">
 
+
+
+          <div className="wrapper">
             <div className="title">
               <h2>Users List</h2>
             </div>
 
-            <div className="card">
-              <div className="img">
-              </div>
-              <div className="content">
-                <div>
-                  <h3>{user.displayName}</h3>
-                  <p>{user.email}</p>
+            {data && data.map((user) => {
+              return (
+                <div key={user.uid} className="card">
+                  <div className="img">
+                  </div>
+                  <div className="content">
+                    <div>
+                      <h3>{user.displayName}</h3>
+                      <p>{user.email}</p>
+                    </div>
+                    <p> {user.online ? 'online' : 'offline'} </p>
+                  </div>
                 </div>
+              )
+            })}
 
-              </div>
-            </div>
           </div>
+
         </div>
       </div>
 
