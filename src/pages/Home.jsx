@@ -32,16 +32,19 @@ export default function Home() {
             </div>
 
             {data && data.map((user) => {
+
+
               return (
                 <div key={user.uid} className="card">
                   <div className="img">
+                    <img src={user.photoUrl} alt="klnlknlk" />
                   </div>
                   <div className="content">
                     <div>
                       <h3>{user.displayName}</h3>
                       <p>{user.email}</p>
+                      <p> {user.online ? 'online' : 'offline'} </p>
                     </div>
-                    <p> {user.online ? 'online' : 'offline'} </p>
                   </div>
                 </div>
               )

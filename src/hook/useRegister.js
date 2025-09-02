@@ -11,7 +11,7 @@ export const useRegister = () => {
     const dispatch = useDispatch()
     const [isPending, setIspending] = useState()
     const [error, setError] = useState()
-    const register = async (name, email, password) => {
+    const register = async (name, email,  password) => {
         // console.log(`Name: ${name}, Email: ${email}, Password: ${password}`);
         try {
             setIspending(true)
@@ -22,6 +22,7 @@ export const useRegister = () => {
             }
             await updateProfile(req.user, {
                 displayName: name,
+                photoURL:"https://api.dicebear.com/9.x/lorelei/svg?seed=" + name
             })
 
 
