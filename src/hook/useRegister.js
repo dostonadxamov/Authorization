@@ -24,16 +24,18 @@ export const useRegister = () => {
                 displayName: name,
             })
 
-            await setDoc(doc(db, "users", req.user.uid )), {
+
+            await setDoc(doc(db, "users", req.user.uid), {
                 displayName: req.user.displayName,
-                photoUrl:  req.user.photoURL,
-                online: true, 
-                uid: req.user.uid
-            }
+                photoUrl: req.user.photoURL,
+                online: true,
+                uid: req.user.uid,
+            });
+
 
             dispatch(login(req.user))
             console.log(req.user);
-            
+
         } catch (error) {
             setError(error.message)
             console.log(error.message);

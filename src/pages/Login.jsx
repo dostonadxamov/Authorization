@@ -28,7 +28,7 @@ export default function Login() {
     } else {
       data ? formError() : false
     }
-    
+
     if (data?.emailRecovery) {
       resetPassword(data.emailRecovery)
     }
@@ -43,9 +43,7 @@ export default function Login() {
           <NavLink to={"/register"}>Register</NavLink>
         </p>
 
-        {!form && <button className="oauthButton" onClick={() => setform(!form)}>
-          Forget password
-        </button>}
+
 
         <input type="email" placeholder="Email" name="email" />
         <input type="password" placeholder="Password" name="password" />
@@ -54,6 +52,9 @@ export default function Login() {
           <span>OR</span>
           <div></div>
         </div>
+        {!form && <button className="oauthButton" onClick={() => setform(!form)}>
+          Forget password
+        </button>}
         <button className="oauthButton">
           <FcGoogle size={24} />
           Continue with Google

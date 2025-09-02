@@ -18,16 +18,17 @@ export default function useLogin() {
     console.log(`Email: ${email}  Password: ${password}`);
     try {
       const req = await signInWithEmailAndPassword(auth, email, password);
-      const useRef = doc(db, "users", req.user.uid)
-      await updateDoc(useRef, {
-        online: true
-      })
       setIspending(true);
 
       if (!req.user) {
         toast.error("Login failed");
         return;
       }
+
+
+      const userRef = doc(db, "users", req.user.uid);
+      await setDoc(userRef, { online: true });
+
 
 
       dispatch(loginAction(req.user));

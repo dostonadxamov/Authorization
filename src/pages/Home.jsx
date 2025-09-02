@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux"
+import {  useSelector } from "react-redux"
 import { useLogOut } from "../hook/LogOut"
 
 export default function Home() {
-  const {ispending, error , logout}= useLogOut()
+  const {ispending,  logout}= useLogOut()
   const {user} = useSelector((store)=> store.user)
   return (
     <>
@@ -14,8 +14,8 @@ export default function Home() {
             </div>
             <ul className="navbar-links">
               <li>
-                {!ispending && <button onClick={logout}>LogOut</button>}
-                {ispending && <button disabled >Loading...</button>}
+                {!ispending && <button className="oauthButton" onClick={logout}>LogOut</button>}
+                {ispending && <button className="oauthButton" disabled >Loading...</button>}
               </li>
             </ul>
           </nav>
@@ -34,7 +34,6 @@ export default function Home() {
                   <p>{user.email}</p>
                 </div>
 
-                <h4>online</h4>
               </div>
             </div>
           </div>
