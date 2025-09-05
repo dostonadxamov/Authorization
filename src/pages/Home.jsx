@@ -37,7 +37,7 @@ export default function Home() {
               return (
                 <div key={user.uid} className="card">
                   <div className="img">
-                    <img src={user.photoUrl} alt="klnlknlk" />
+                    <img src={user.photoUrl} alt="" />
                   </div>
                   <div className="content">
                     <div>

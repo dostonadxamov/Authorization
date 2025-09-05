@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { isAuthReady, login } from "./app/Auth/AuthSlice";
 import { auth } from "./firebase/config";
+import CreateTask from "./pages/CreateTask";
 
 
 export default function App() {
@@ -26,6 +27,10 @@ export default function App() {
         {
           index: true,
           element: <Home />
+        },
+        {
+          path: "/create",
+          element: <CreateTask/>
         }
       ]
     },

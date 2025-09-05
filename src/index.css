@@ -301,3 +301,12 @@ h4 {
     margin-left: 600px;
     margin-top: 15px;
 }
+
+label{
+    font-weight: 800;
+    font-size: 18px;
+}
+
+textarea{
+    width: 250px;
+}
