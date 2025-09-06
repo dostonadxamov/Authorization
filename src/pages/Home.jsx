@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux"
 import { useLogOut } from "../hook/LogOut"
 import { useCollection } from "../hook/useCollection"
+import { Link } from "react-router-dom"
+
 
 export default function Home() {
   const { ispending, logout } = useLogOut()
@@ -20,6 +22,9 @@ export default function Home() {
               <li>
                 {!ispending && <button className="oauthButton" onClick={logout}>LogOut</button>}
                 {ispending && <button className="oauthButton" disabled >Loading...</button>}
+              </li>
+              <li>
+                <Link to={"/create"}>CreateTask</Link>
               </li>
             </ul>
           </nav>
