@@ -8,7 +8,10 @@ export default function Home() {
   const { ispending, logout } = useLogOut()
   const { user } = useSelector((store) => store.user)
   const { data } = useCollection("users")
-  console.log(data);
+  const { data : tasks } = useCollection("tasks")
+  console.log(tasks);
+  
+
 
   return (
     <>
@@ -24,7 +27,7 @@ export default function Home() {
                 {ispending && <button className="oauthButton" disabled >Loading...</button>}
               </li>
               <li>
-                <Link to={"/create"}>CreateTask</Link>
+                <Link className="oauthButton" to={"/create"}>CreateTask</Link>
               </li>
             </ul>
           </nav>
@@ -50,16 +53,24 @@ export default function Home() {
                       <p>{user.email}</p>
                       <p> {user.online ? 'online' : 'offline'} </p>
                     </div>
+                     <ul>
+                      {tasks && tasks.map((task) => {
+                   
+                        <li>
+                          <h5>{task.name}nknkkl</h5>
+                        </li>
+                      })}
+                    </ul>
+                  </div>
+                  <div>
+                   
                   </div>
                 </div>
               )
             })}
-
           </div>
-
         </div>
       </div>
-
     </>
   )
 }
