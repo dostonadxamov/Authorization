@@ -9,51 +9,54 @@ import { db } from "../firebase/config";
 function CreateTask() {
     const navigate = useNavigate()
     const { data } = useCollection("users")
-    const [userOptions, setUserOptions] = useState(null)
+    const [userOptions, setUserOptions] = useState()
+    const [assignedUsers, setAssignedUsers] = useState([])
+    console.log(assignedUsers);
+
 
     useEffect(() => {
-        const users = data?.map((user) => {
-            return {
-                value: user.displayName,
-                label: user.displayName,
-                photoURL: user.photoUrl,
-                uid: user.uid
-            }
-        })
-        setUserOptions(users)
+        if (data) {
+            const users = data?.map((user) => {
+                return {
+                    value: user.displayName,
+                    label: user.displayName,
+                    photoURL: user.photoUrl,
+                    uid: user.uid
+                }
+            })
+            setUserOptions(users)
+        }
     }, [data])
-
-    console.log(userOptions);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const formdata = new FormData(e.target)
-        const name = formdata.get('title')
-        const description = formdata.get('description')
+        const name = formdata.get("title")
+        const description = formdata.get("description")
         const dueto = formdata.get('due-to')
+
         const task = {
             name,
             description,
             dueto,
-            userOptions,
+            assignedUsers, 
             comments: []
         }
 
-
-        await addDoc(collection(db, "task"), {
+        await addDoc(collection(db, "tasks"), {
             ...task,
-        }).then(() => {
-            alert("Qoshildi")
-            navigate('/')
+        }).then(()=>{
+            alert("succes")
+            navigate("/")
         })
-
     }
+
 
     return (
 
         <div className="task">
-            <form onSubmit={handleSubmit} className="form-container">
+            <form onSubmit={handleSubmit} method="post" className="form-container">
                 {/* Title */}
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
@@ -79,6 +82,8 @@ function CreateTask() {
                         isMulti
                         name="Users"
                         options={userOptions}
+                        value={assignedUsers}
+                        onChange={(selected) => setAssignedUsers(selected)}
                         className="select-users"
                         classNamePrefix="react-select"
                     />

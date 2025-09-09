@@ -12,6 +12,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { isAuthReady, login } from "./app/Auth/AuthSlice";
 import { auth } from "./firebase/config";
 import CreateTask from "./pages/CreateTask";
+import Task from "./pages/Task";
+
+
 
 
 export default function App() {
@@ -27,12 +30,16 @@ export default function App() {
         {
           index: true,
           element: <Home />,
-          
-          
+
+
         },
         {
           path: "/create",
-          element: <CreateTask/>
+          element: <CreateTask />
+        },
+        {
+          path: "task/:id",
+          element: <Task />
         }
       ]
     },
@@ -49,12 +56,12 @@ export default function App() {
     }
   ])
 
-  useEffect(()=>{
-    onAuthStateChanged(auth, (user)=>{
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
       dispatch(login(user))
       dispatch(isAuthReady())
     })
-  },[])
+  }, [])
 
-  return <> { authReady &&  <RouterProvider router={routes} />} </>
+  return <> {authReady && <RouterProvider router={routes} />} </>
 }

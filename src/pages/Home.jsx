@@ -8,9 +8,9 @@ export default function Home() {
   const { ispending, logout } = useLogOut()
   const { user } = useSelector((store) => store.user)
   const { data } = useCollection("users")
-  const { data : tasks } = useCollection("tasks")
-  console.log(tasks);
-  
+  const { data: tasks } = useCollection("tasks")
+
+
 
 
   return (
@@ -53,17 +53,19 @@ export default function Home() {
                       <p>{user.email}</p>
                       <p> {user.online ? 'online' : 'offline'} </p>
                     </div>
-                     <ul>
+                    <ul>
                       {tasks && tasks.map((task) => {
-                   
-                        <li>
-                          <h5>{task.name}nknkkl</h5>
+                        console.log(task);
+
+                        return <li key={task.uid}>
+
+                          <Link to={`/task/${task.uid}`}><h5>{task.name}</h5></Link>
                         </li>
                       })}
                     </ul>
                   </div>
                   <div>
-                   
+
                   </div>
                 </div>
               )

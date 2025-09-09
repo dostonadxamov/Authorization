@@ -40,8 +40,8 @@ export default function Login() {
             <NavLink to={"/register"}>Register</NavLink>
           </p>
 
-          <input type="email" placeholder="Email" name="email" />
-          <input type="password" placeholder="Password" name="password" />
+          <input type="email" placeholder="Email"  autocomplete="current-password" name="email" />
+          <input type="password"  autocomplete="current-password" placeholder="Password" name="password" />
 
           <div className="separator">
             <div></div>

@@ -27,6 +27,10 @@ body {
     padding-top: 30px;
 }
 
+h5 {
+    color: white;
+    margin-left: 15px;
+}
 
 .navbar {
 
@@ -398,7 +402,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
-    position: relative; /* kerak bo‘ladi */
+    position: relative;
+    /* kerak bo‘ladi */
 }
 
 body::before {
@@ -409,5 +414,33 @@ body::before {
     bottom: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: -1; 
+    z-index: -1;
+}
+
+
+.task__wrapper {
+    padding: 40px 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-height: 90vh;
+    box-sizing: border-box;
+}
+
+
+.chat{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.img{
+    padding-left: 5px;
+    background-color: white;
+    border-radius: 50%;
 }

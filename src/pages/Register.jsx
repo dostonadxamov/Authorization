@@ -39,9 +39,9 @@
 
                         </p>
                         
-                        <input type="text" placeholder="Enter Your name" name="name" />
-                        <input type="email" placeholder="Enter Your Email" name="email" />
-                        <input type="password" placeholder="Enter Your Password" name="password" />
+                        <input type="text"  autocomplete="current-password" placeholder="Enter Your name" name="name" />
+                        <input type="email"  autocomplete="current-password" placeholder="Enter Your Email" name="email" />
+                        <input type="password"  autocomplete="current-password" placeholder="Enter Your Password" name="password" />
                         {!isPending && <button className="oauthButton">
                             Continue
                             <FaAngleDoubleRight size={18} />
