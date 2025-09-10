@@ -17,6 +17,10 @@ export default function Home() {
     <>
       <div className="container">
         <div className="flex">
+
+        
+
+
           <nav className="navbar">
             <div className="navbar-logo">
               <h2>Home - {user.displayName}</h2>
